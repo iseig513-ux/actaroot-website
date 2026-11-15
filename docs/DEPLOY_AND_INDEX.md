@@ -11,7 +11,16 @@ Create **three separate Pages projects** attached to this repo, each with build 
 - msihu.com: `sites/msihu.com`
 - min.tienda: `sites/min.tienda`
 
-For each, attach only the named apex domain as custom domain after checking DNS ownership, and configure www-to-apex 301 rules limited to that hostname. Confirm SSL/TLS certificates. Make no changes to ohwut.com or other Cloudflare zones. The Pages projects and DNS have **not** been created by this commit.
+For each, attach only the named apex domain as custom domain after checking DNS ownership, and configure www-to-apex 301 rules limited to that hostname. Confirm SSL/TLS certificates.
+
+### Optional HTML verification meta tags
+Google domain ownership via DNS TXT remains the preferred first step. If a site-specific HTML meta method is required, set the following environment variables in the **matching site's** Pages build settings (never commit actual tokens):
+- `GOOGLE_SITE_VERIFICATION_ACTAROOT_COM`, `BING_SITE_VERIFICATION_ACTAROOT_COM`
+- `GOOGLE_SITE_VERIFICATION_MSIHU_COM`, `BING_SITE_VERIFICATION_MSIHU_COM`
+- `GOOGLE_SITE_VERIFICATION_MIN_TIENDA`, `BING_SITE_VERIFICATION_MIN_TIENDA`
+
+The generator emits Google's `google-site-verification` and Bing's `msvalidate.01` tags only when their respective variables are present. CI uses no tokens and never prints them.
+ Make no changes to ohwut.com or other Cloudflare zones. The Pages projects and DNS have **not** been created by this commit.
 
 ## Redirect Workers (do not deploy until approved)
 - Two independent Worker projects: `workers/oh-tin` and `workers/wut-sale`.
