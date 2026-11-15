@@ -3,9 +3,9 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const config=JSON.parse(readFileSync(join(root,"content","sites.json"),"utf8"));
-s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")
+const escapeHtml=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")
 
-s=>escapeHtml(s)
+const escapeXml=s=>escapeHtml(s)
 
 function absolute(site,path=""){return site.origin+"/"+(path?path+"/":"")}
 
@@ -73,6 +73,8 @@ function render404(site){
 const style=":root{font-family:system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif;color:#17202b;background:#fff;font-synthesis:none}*{box-sizing:border-box}body{margin:0;line-height:1.7}.wrap{width:min(780px,calc(100% - 40px));margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px 0;border-bottom:1px solid #e4e7eb}.brand{margin:0;font-weight:750}a{color:#204c8c;text-decoration-thickness:1px;text-underline-offset:3px}nav{display:flex;gap:12px;flex-wrap:wrap}nav a{font-size:14px}.eyebrow{margin:54px 0 4px;color:#667085;font-size:13px;letter-spacing:.09em;text-transform:uppercase}h1{font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.1;letter-spacing:-.035em;margin:0 0 23px}h2{font-size:1.35rem;letter-spacing:-.02em;margin:0 0 10px}.intro{font-size:1.15rem;color:#344054;line-height:1.7;margin:0 0 50px}section{padding:24px 0;border-top:1px solid #eaecf0}section p{margin:8px 0 14px}.links a{font-weight:650}footer{border-top:1px solid #e5e7eb;padding:24px 0 38px;margin-top:48px;color:#475467}.small{font-size:12px;color:#667085}@media(max-width:650px){header{align-items:flex-start;flex-direction:column}.eyebrow{margin-top:36px}}";
 const outputRoot=join(root,"sites");
 rmSync(outputRoot,{recursive:true,force:true});
+mkdirSync(outputRoot,{recursive:true});
+writeFileSync(join(outputRoot,".gitkeep"),"# Build outputs are committed under sites/<domain>/.\n","utf8");
 for(const [domain,site] of Object.entries(config)){
  const dir=join(outputRoot,domain);mkdirSync(dir,{recursive:true});
  const write=(path,text)=>{const destination=join(dir,path);mkdirSync(dirname(destination),{recursive:true});writeFileSync(destination,text+"\n","utf8")};
