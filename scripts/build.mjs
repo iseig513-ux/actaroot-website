@@ -26,6 +26,15 @@ function makeSchema(site,page){
  return {"@context":"https://schema.org","@graph":nodes};
 }
 
+function verificationTags(site){
+ const suffix=site.origin.replace("https://","").replace(/[^a-zA-Z0-9]/g,"_").toUpperCase();
+ const google=process.env["GOOGLE_SITE_VERIFICATION_"+suffix];
+ const bing=process.env["BING_SITE_VERIFICATION_"+suffix];
+ const tags=[];
+ if(google)tags.push('<meta name="google-site-verification" content="'+escapeHtml(google)+'">');
+ if(bing)tags.push('<meta name="msvalidate.01" content="'+escapeHtml(bing)+'">');
+ return tags.length?tags.join("\n")+"\n":"";
+}
 function renderHtml(site,page){
  const url=absolute(site,page.path),nav=site.pages.map(p=>`<a href="${escapeHtml(absolute(site,p.path))}"${p.path===page.path?' aria-current="page"':""}>${escapeHtml(p.path?p.h1:"Home")}</a>`).join("");
  const sections=page.sections.map(s=>`<section><h2>${escapeHtml(s.heading)}</h2>${(s.paragraphs||[]).map(p=>`<p>${escapeHtml(p)}</p>`).join("")}${(s.links||[]).length?`<p class="links">${s.links.map(([label,href])=>`<a href="${escapeHtml(href.startsWith("/")?site.origin+href:href)}">${escapeHtml(label)}</a>`).join(" · ")}</p>`:""}</section>`).join("\n");
@@ -34,7 +43,7 @@ function renderHtml(site,page){
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(page.title)}</title>
 <meta name="description" content="${escapeHtml(page.description)}">
-<meta name="robots" content="index,follow,max-image-preview:large">
+${verificationTags(site)}<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="${escapeHtml(url)}">
 <meta property="og:type" content="${site.kind==="company"?"website":"profile"}">
 <meta property="og:locale" content="en_US"><meta property="og:site_name" content="${escapeHtml(site.name)}">
