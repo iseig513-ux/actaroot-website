@@ -1,0 +1,5 @@
+name = "wut-sale-links"
+main = "src/index.mjs"
+compatibility_date = "2026-11-16"
+workers_dev = false
+# Attach only wut.sale and www.wut.sale after explicit approval. No automatic routes.
