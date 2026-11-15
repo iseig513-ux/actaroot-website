@@ -20,7 +20,8 @@ Google domain ownership via DNS TXT remains the preferred first step. If a site-
 - `GOOGLE_SITE_VERIFICATION_MIN_TIENDA`, `BING_SITE_VERIFICATION_MIN_TIENDA`
 
 The generator emits Google's `google-site-verification` and Bing's `msvalidate.01` tags only when their respective variables are present. CI uses no tokens and never prints them.
- Make no changes to ohwut.com or other Cloudflare zones. The Pages projects and DNS have **not** been created by this commit.
+
+Make no changes to ohwut.com or other Cloudflare zones. The Pages projects and DNS have **not** been created by this commit.
 
 ## Redirect Workers (do not deploy until approved)
 - Two independent Worker projects: `workers/oh-tin` and `workers/wut-sale`.
@@ -42,9 +43,9 @@ The generator emits Google's `google-site-verification` and Bing's `msvalidate.0
 2. Submit each sitemap; inspect crawl/indexing and SEO reports. Optional future IndexNow requires a site-specific ownership key and actual changed URLs; do not commit fabricated keys.
 
 ## ChatGPT Search and AI crawlers
-- robots.txt explicitly permits OAI-SearchBot, while blocking GPTBot (model-training crawler); Googlebot/Bingbot use the public allow section.
+- Per-domain robots.txt allows `OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `Googlebot`, `Google-Extended`, `PerplexityBot`, `Perplexity-User` and `Bingbot`. It separately blocks `GPTBot` and `ClaudeBot` training crawlers.
 - Check Cloudflare Bot Management/WAF and published searchbot IP ranges, if currently configured, before claiming live accessibility: https://developers.openai.com/api/docs/bots and https://openai.com/searchbot.json . These settings are not changed in this repo.
-- `llms.txt` is optional contextual navigation; it is not treated as an official ranking signal. No fabricated AI-specific ranking tags.
+- `llms.txt`, `llms-full.txt` and `facts.json` are optional companion resources generated from visible content; they are not treated as official ranking signals. See `docs/AI_DISCOVERY.md`.
 - Verify real public 200 pages and public crawler access after deployment; source code does not establish crawling or citations.
 
 ## Diagnostics

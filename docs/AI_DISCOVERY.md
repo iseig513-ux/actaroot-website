@@ -11,6 +11,7 @@ This repository publishes ordinary, readable HTML at the canonical information s
 | Gemini / Google Search | `Googlebot` | Allow |
 | Gemini grounding / related usage control | `Google-Extended` | Allow |
 | Perplexity Search | `PerplexityBot` | Allow |
+| Bing Search | `Bingbot` | Allow |
 | Model-training crawling (OpenAI) | `GPTBot` | Disallow |
 | Model-training crawling (Anthropic) | `ClaudeBot` | Disallow |
 

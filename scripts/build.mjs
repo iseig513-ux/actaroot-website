@@ -49,7 +49,7 @@ function renderSitemap(site){
 }
 
 function renderRobots(site){
- const agents=["Googlebot","Google-Extended","OAI-SearchBot","ChatGPT-User","Claude-SearchBot","Claude-User","PerplexityBot","Perplexity-User"];
+ const agents=["Googlebot","Google-Extended","OAI-SearchBot","ChatGPT-User","Claude-SearchBot","Claude-User","PerplexityBot","Perplexity-User","Bingbot"];
  return "User-agent: *\nAllow: /\n\n"+agents.map(x=>"User-agent: "+x+"\nAllow: /").join("\n\n")+"\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nSitemap: "+site.origin+"/sitemap.xml";
 }
 
