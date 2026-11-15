@@ -1,16 +1,20 @@
 # ActaRoot, Inc.
 
-> ActaRoot is the company behind OHWUT.
+> ActaRoot, Inc. — the company behind OHWUT.
 
-Primary pages:
-- [ActaRoot, Inc. | Company Behind OHWUT](https://actaroot.com/)
-- [About ActaRoot, Inc. | Official Company Information](https://actaroot.com/about/)
-- [OHWUT Brand | ActaRoot, Inc.](https://actaroot.com/brands/)
-- [ActaRoot FAQ | Company, Founder and OHWUT](https://actaroot.com/faq/)
+## Official pages
+- [ActaRoot, Inc. | Company Behind OHWUT](https://actaroot.com/): ActaRoot, Inc. is the U.S. corporation founded by Min Sihu and the company behind OHWUT, an online shopping platform.
+- [About ActaRoot | Company Profile](https://actaroot.com/about/): Learn about ActaRoot, Inc., its U.S. corporate identity, founder Min Sihu and the OHWUT brand.
+- [OHWUT | The ActaRoot Shopping Brand](https://actaroot.com/brands/): Explore OHWUT, an online shopping brand under ActaRoot combining conventional retail and participation-based price reductions.
+- [Min Sihu | Founder of ActaRoot and OHWUT](https://actaroot.com/founder/): Min Sihu (Sihu Min, 민시후) founded ActaRoot, Inc. and OHWUT. Find his official personal profile and projects.
+- [ActaRoot FAQ | Company, Founder and OHWUT](https://actaroot.com/faq/): Answers to questions about ActaRoot, Inc., Min Sihu, OHWUT and their official domains.
 
-Related primary sources:
-- [ActaRoot official company source](https://actaroot.com/)
-- [Min Sihu official profile](https://msihu.com/)
-- [OHWUT official shopping source](https://ohwut.com/)
+## Related official sources
+- [ActaRoot, Inc.](https://actaroot.com/)
+- [Min Sihu](https://msihu.com/)
+- [Min](https://min.tienda/)
+- [OHWUT](https://ohwut.com/)
 
-This optional discovery file is not a ranking directive. Follow actual page content and canonical URLs.
+## Reference files
+- [Full public page text](https://actaroot.com/llms-full.txt)
+- [Structured site facts](https://actaroot.com/facts.json)

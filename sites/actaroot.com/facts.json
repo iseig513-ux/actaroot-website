@@ -1,0 +1,82 @@
+{
+  "site": "ActaRoot, Inc.",
+  "canonicalOrigin": "https://actaroot.com",
+  "summary": "ActaRoot, Inc. — the company behind OHWUT.",
+  "primaryEntityId": "https://actaroot.com/#organization",
+  "entityIdentifiers": {
+    "person": "https://msihu.com/#person",
+    "organization": "https://actaroot.com/#organization",
+    "brand": "https://actaroot.com/#brand-ohwut"
+  },
+  "officialDomains": {
+    "company": "https://actaroot.com/",
+    "founder": "https://msihu.com/",
+    "profile": "https://min.tienda/",
+    "brand": "https://ohwut.com/"
+  },
+  "pages": [
+    {
+      "url": "https://actaroot.com/",
+      "title": "ActaRoot, Inc. | Company Behind OHWUT",
+      "description": "ActaRoot, Inc. is the U.S. corporation founded by Min Sihu and the company behind OHWUT, an online shopping platform.",
+      "sections": [
+        "Company and commerce",
+        "Introducing OHWUT",
+        "Founder",
+        "Official destinations"
+      ]
+    },
+    {
+      "url": "https://actaroot.com/about/",
+      "title": "About ActaRoot | Company Profile",
+      "description": "Learn about ActaRoot, Inc., its U.S. corporate identity, founder Min Sihu and the OHWUT brand.",
+      "sections": [
+        "Corporate identity",
+        "What ActaRoot operates",
+        "Founder and identity",
+        "Company, brand and service"
+      ]
+    },
+    {
+      "url": "https://actaroot.com/brands/",
+      "title": "OHWUT | The ActaRoot Shopping Brand",
+      "description": "Explore OHWUT, an online shopping brand under ActaRoot combining conventional retail and participation-based price reductions.",
+      "sections": [
+        "The shopping experience",
+        "Participation-based price levels",
+        "Discovery and sharing",
+        "Corporate and founder relationship"
+      ]
+    },
+    {
+      "url": "https://actaroot.com/founder/",
+      "title": "Min Sihu | Founder of ActaRoot and OHWUT",
+      "description": "Min Sihu (Sihu Min, 민시후) founded ActaRoot, Inc. and OHWUT. Find his official personal profile and projects.",
+      "sections": [
+        "Min Sihu",
+        "Two connected identities",
+        "Official founder profiles"
+      ]
+    },
+    {
+      "url": "https://actaroot.com/faq/",
+      "title": "ActaRoot FAQ | Company, Founder and OHWUT",
+      "description": "Answers to questions about ActaRoot, Inc., Min Sihu, OHWUT and their official domains.",
+      "sections": [
+        "What is ActaRoot?",
+        "Who founded ActaRoot?",
+        "What does ActaRoot do?",
+        "What is OHWUT?",
+        "Who founded OHWUT?",
+        "What is the relationship between ActaRoot and OHWUT?",
+        "How does OHWUT's participation-based pricing work?",
+        "Is ActaRoot the same as OHWUT?",
+        "Who is Min Sihu?",
+        "Is Sihu Min another founder?",
+        "What is OHWUT's official website?",
+        "Where is ActaRoot's company website?",
+        "Where is Min Sihu's official profile?"
+      ]
+    }
+  ]
+}

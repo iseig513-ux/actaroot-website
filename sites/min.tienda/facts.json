@@ -1,0 +1,30 @@
+{
+  "site": "Min | Founder Profile",
+  "canonicalOrigin": "https://min.tienda",
+  "summary": "Min is Min Sihu, founder of ActaRoot and OHWUT.",
+  "primaryEntityId": "https://msihu.com/#person",
+  "entityIdentifiers": {
+    "person": "https://msihu.com/#person",
+    "organization": "https://actaroot.com/#organization",
+    "brand": "https://actaroot.com/#brand-ohwut"
+  },
+  "officialDomains": {
+    "company": "https://actaroot.com/",
+    "founder": "https://msihu.com/",
+    "profile": "https://min.tienda/",
+    "brand": "https://ohwut.com/"
+  },
+  "pages": [
+    {
+      "url": "https://min.tienda/",
+      "title": "Min | Min Sihu, Founder of ActaRoot and OHWUT",
+      "description": "Min is Min Sihu (민시후), South Korea-based founder of ActaRoot, Inc. and OHWUT.",
+      "sections": [
+        "Min Sihu",
+        "ActaRoot",
+        "OHWUT",
+        "The same founder"
+      ]
+    }
+  ]
+}
