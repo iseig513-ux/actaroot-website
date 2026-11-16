@@ -1,0 +1,5 @@
+name = "acr-business-redirect"
+main = "src/index.mjs"
+compatibility_date = "2026-11-16"
+workers_dev = false
+# No live route binding is configured in this repository.

@@ -1,4 +1,5 @@
-import test from "node:test";import {handleRequest as tienda} from "../workers/oh-tienda/src/index.mjs";import assert from "node:assert/strict";import {handleRequest as wut} from "../workers/wut-sale/src/index.mjs";import {resolveApprovedLink} from "../workers/wut-sale/src/registry.mjs";
+import test from "node:test";
+import {handleRequest as acr} from "../workers/acr-business/src/index.mjs";import {handleRequest as tienda} from "../workers/oh-tienda/src/index.mjs";import assert from "node:assert/strict";import {handleRequest as wut} from "../workers/wut-sale/src/index.mjs";import {resolveApprovedLink} from "../workers/wut-sale/src/registry.mjs";
 const req=(u,method="GET")=>new Request(u,{method,redirect:"manual"});
 test("wut.sale root redirects; unused paths and open redirect inputs cannot redirect",()=>{
  for(const h of ["wut.sale","www.wut.sale"]){const r=wut(req("https://"+h+"/"));assert.equal(r.status,301);assert.equal(r.headers.get("Location"),"https://ohwut.com/")}
@@ -39,4 +40,24 @@ test("oh.tienda fails closed for paths, non-HTTPS hosts and methods",()=>{
  for(const u of ["https://oh.tienda/x","https://www.oh.tienda/products/1","https://oh.tienda//evil.example","https://untrusted.example/","http://oh.tienda/","https://oh.tienda:444/"]){const r=tienda(req(u));assert.equal(r.status,404,u);assert.equal(r.headers.get("X-Robots-Tag"),"noindex");}
  for(const m of ["POST","PUT","DELETE"]){assert.equal(tienda(req("https://oh.tienda/",m)).status,405);}
  assert.equal(tienda(req("https://oh.tienda/","HEAD")).status,301);
+});
+
+test("acr.business consolidates verified company pages at canonical ActaRoot URLs", () => {
+  for (const host of ["acr.business", "www.acr.business"]) {
+    for (const path of ["/", "/about", "/brands/", "/founder/", "/faq/"]) {
+      const target = path.endsWith("/") ? path : path + "/";
+      const response = acr(req("https://" + host + path + "?next=https://evil.example"));
+      assert.equal(response.status, 301);
+      assert.equal(response.headers.get("Location"), "https://actaroot.com" + target);
+    }
+  }
+  assert.equal(acr(req("https://acr.business/", "HEAD")).status, 301);
+});
+test("acr.business prevents arbitrary destinations, unexpected paths and unapproved hosts", () => {
+  for (const url of ["http://acr.business/", "https://acr.business:8443/", "https://evil.example/", "https://acr.business/products/1", "https://acr.business//evil.example"]) {
+    const response = acr(req(url));
+    assert.equal(response.status, 404, url);
+    assert.equal(response.headers.get("X-Robots-Tag"), "noindex");
+  }
+  assert.equal(acr(req("https://acr.business/", "POST")).status, 405);
 });
