@@ -1,0 +1,19 @@
+# Min Sihu
+
+> Min Sihu — founder of ActaRoot and OHWUT.
+
+## Official pages
+- [Min Sihu (Sihu Min) | Founder of ActaRoot and OHWUT](https://msihu.com/): Official profile of Min Sihu (민시후), South Korea-based founder of ActaRoot, Inc. and OHWUT.
+- [About Min Sihu | Founder Biography](https://msihu.com/about/): Background, names and work of Min Sihu (Sihu Min, 민시후), founder of ActaRoot and OHWUT.
+- [Projects | ActaRoot and OHWUT — Min Sihu](https://msihu.com/projects/): Explore ActaRoot, Inc. and OHWUT, the company and shopping platform founded by Min Sihu.
+- [Min Sihu FAQ | Founder of ActaRoot and OHWUT](https://msihu.com/faq/): Answers about Min Sihu, Sihu Min, 민시후, ActaRoot, OHWUT and their official websites.
+
+## Related official sources
+- [ActaRoot, Inc.](https://actaroot.com/)
+- [Min Sihu](https://msihu.com/)
+- [Min](https://min.tienda/)
+- [OHWUT](https://ohwut.com/)
+
+## Reference files
+- [Full public page text](https://msihu.com/llms-full.txt)
+- [Structured site facts](https://msihu.com/facts.json)

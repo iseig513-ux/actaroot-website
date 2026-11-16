@@ -1,35 +1,36 @@
-# ActaRoot Website
+# ActaRoot & Min — five-domain SEO/GEO foundation
 
-ActaRoot, Inc. 웹사이트의 정적 내보내기본입니다. HTML, 이미지, 폰트와 실행에 필요한 JavaScript가 포함되어 있습니다.
+This branch **replaces the old Framer-exported ActaRoot website** and associated large assets with an accessible, fact-based, English-first **official company and founder knowledge foundation**. The replacement is confined to a GitHub work branch until reviewed. No Cloudflare/DNS/live deployment happens here.
 
-## 로컬 미리보기
+| Domain | Purpose | Deployable artifact |
+|---|---|---|
+| actaroot.com | Official company, brand, founder, FAQ — 5 pages | `sites/actaroot.com` |
+| msihu.com | Primary profile, about, projects and FAQ — 4 pages | `sites/msihu.com` |
+| min.tienda | Distinct secondary profile for the same person — 1 page | `sites/min.tienda` |
+| oh.tin | Root-only permanent redirect to ohwut.com | `workers/oh-tin` |
+| wut.sale | Root-only redirect and safe future sharing foundation | `workers/wut-sale` |
 
-별도의 설치나 빌드 없이 저장소 루트에서 실행합니다.
+**OHWUT official service source remains `https://ohwut.com/` and is not changed.** No other domain, Stripe logic, checkout, fulfillment, external DNS or brand configuration is modified.
 
-```sh
-python3 -m http.server 4174 --bind 127.0.0.1
+## Run / validate
+```bash
+npm run check
+# generated static sites available under sites/<domain>/
 ```
 
-브라우저에서 http://127.0.0.1:4174/ 를 엽니다. 파일을 직접 여는 대신 HTTP 서버를 사용해야 JavaScript 모듈이 동작합니다.
+No npm dependencies. GitHub Actions executes the same tests and checks reproducible build output.
 
-## 정리한 요소
+## Included
+- Visible answer-first content and unique title/H1/descriptions on every indexed page
+- Correct self-canonicals, Open Graph, Twitter cards, mobile styles, SVG initial favicons, real 404 pages
+- Schema.org Organization/Person/Brand/WebSite/WebPage/ProfilePage/BreadcrumbList IDs and relationships
+- Ten rich, public HTML pages with direct answer copy, consistent named entities and visible founder/brand relationships
+- FAQPage schema on factual Q&A pages and connected JSON-LD entity identifiers
+- Per-domain sitemap and robots.txt; ChatGPT Search, Claude Search, Google/Gemini and Perplexity access policies
+- Separate search and training crawler preferences for GPTBot and ClaudeBot
+- Per-site optional `llms.txt`, `llms-full.txt` and generated `facts.json`, all derived from verified public content
+- Public editorial rules and crawler behavior documented in `docs/AI_DISCOVERY.md` and `docs/PUBLIC_COPY_POLICY.md`
+- Two Cloudflare Worker implementations, fail-closed share mapping and redirect tests
+- No auto-deploy: manual setup in `docs/DEPLOY_AND_INDEX.md`
 
-- Framer 무료 플랜 배지와 배지를 다시 생성하는 실행 코드
-- 템플릿 판매자의 NEW TEMPLATES 버튼과 미리보기 카드
-- Businity 템플릿을 홍보하던 페이지 제목, 설명, 검색 인덱스 및 공유 이미지
-- 원래 Framer 호스트의 분석 스크립트와 편집기 바 로더
-
-사이트 레이아웃, 애니메이션, 본문 콘텐츠, ActaRoot 및 ohwut 링크는 유지했습니다. 화면 동작에 필요한 Framer 런타임과 CSS 클래스도 유지합니다.
-
-## 내보내기본의 특성
-
-- 원본 압축에는 홈페이지 HTML 1개와 다른 페이지의 JavaScript 모듈이 포함되어 있습니다. 하위 경로를 새로고침하거나 직접 접속하려면 호스팅 서버에서 실제 파일 이외의 페이지 경로를 `index.html`로 연결하는 SPA fallback 설정이 필요합니다. 이미지·폰트·스크립트 요청에는 이 설정을 적용하지 마세요.
-- 일부 하위 페이지 링크, 소셜 링크 및 샘플 PDF 링크는 원본 콘텐츠 그대로입니다. 이 저장소 생성은 운영 사이트 배포를 포함하지 않습니다.
-- 원본에 이미 존재하는 React hydration 경고가 일부 남아 있습니다. 같은 PC 환경에서 원본은 30개, 정리본은 29개 경고였으며, 두 버전 모두 실행 오류는 없었습니다.
-
-## 확인한 동작
-
-- PC 1440×900 및 모바일 390×844에서 페이지 표시, 이미지 로드, 가로 넘침 확인
-- 두 화면에서 Framer 배지 및 템플릿 홍보 링크 0개 확인
-- PC의 프로세스 탭 전환, 모바일 메뉴 열기·닫기 및 FAQ 확인
-- JavaScript 52개 파일의 구문 검사 통과
+Start with `docs/ENTITY_AND_CONTENT.md`, `docs/SHARE_LINKS.md`, and `docs/DEPLOY_AND_INDEX.md` for content, redirects and next steps.

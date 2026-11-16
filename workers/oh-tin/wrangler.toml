@@ -1,0 +1,5 @@
+name = "oh-tin-redirect"
+main = "src/index.mjs"
+compatibility_date = "2026-11-16"
+workers_dev = false
+# Attach only oh.tin and www.oh.tin after explicit approval. No automatic routes.
