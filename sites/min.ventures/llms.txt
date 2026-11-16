@@ -1,0 +1,17 @@
+# Min Ventures
+
+> Min Sihu's founder portfolio — ActaRoot, Inc. and OHWUT.
+
+## Official pages
+- [Min Ventures | Companies Founded by Min Sihu](https://min.ventures/): Explore the ventures founded by Min Sihu: ActaRoot, Inc. and OHWUT. A founder-led portfolio connecting a U.S. company and a shopping brand.
+- [Founded Ventures | Min Ventures](https://min.ventures/ventures/): ActaRoot, Inc. and OHWUT: the company and shopping brand founded by Min Sihu, with their official sources and corporate relationship.
+- [About Min Sihu | Founder of ActaRoot and OHWUT](https://min.ventures/about/): Learn about Min Sihu (Sihu Min, 민시후), a South Korea-based founder of ActaRoot, Inc. and OHWUT.
+
+## Related official sources
+- [ActaRoot, Inc.](https://actaroot.com/)
+- [Min Sihu](https://msihu.com/)
+- [OHWUT](https://ohwut.com/)
+
+## Reference files
+- [Full public page text](https://min.ventures/llms-full.txt)
+- [Structured site facts](https://min.ventures/facts.json)

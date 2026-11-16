@@ -49,3 +49,37 @@ Both sites' robots.txt allow `OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`
 - Keep existing Pages configuration and domains untouched; verify the GitHub Actions CI and deterministic static generation before merge.
 
 No live Cloudflare/DNS edit, Worker deploy, domain connection, Google/Bing registration, indexing confirmation, or production OHWUT code change is made by this PR.
+
+
+## New: min.ventures Cloudflare Pages (manual provisioning)
+
+After the PR is reviewed and manually merged, create a **new** Cloudflare Pages project; do not reuse, delete or alter the existing ActaRoot/msihu.com projects.
+
+- Project name: `min-ventures`
+- Repository: `iseig513-ux/actaroot-website`
+- Production branch: `main`
+- Framework preset: `None`
+- Build command: `npm run build`
+- Build output directory: `sites/min.ventures`
+- Root directory: repository root (default)
+- Node.js: 20 or later (22 recommended)
+- Connect the `min.ventures` custom domain only after the Pages project is ready, using Cloudflare's offered DNS records. Do not change existing domain or email records.
+- Verify `https://min.ventures/`, `/ventures/`, `/about/`, `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`, and `/facts.json` and inspect live HTTP statuses and JSON-LD.
+- Add `https://min.ventures/sitemap.xml` to Google Search Console and Bing Webmaster Tools after the actual host serves these pages. Inspect real canonical and indexing reports.
+- After the host is live, link back from `msihu.com` and the relevant ActaRoot founder page via a separately reviewed minimal cross-site update; avoid a broad content rewrite.
+
+## New: oh.tienda Cloudflare Worker (manual provisioning)
+
+The source is under `workers/oh-tienda` and does not bind any route automatically.
+
+- Connect GitHub repository `iseig513-ux/actaroot-website` in Cloudflare Workers Builds, or manually deploy from the directory after PR merge.
+- Root directory: `workers/oh-tienda`
+- Build command: none (pure JavaScript Worker)
+- Deploy command: `npx wrangler@4 deploy`
+- Wrangler file: `workers/oh-tienda/wrangler.toml`; `workers_dev=false`, no automatic routes.
+- Confirm deployed Worker is healthy in the Cloudflare dashboard **before** attaching custom domains.
+- Attach `oh.tienda` and `www.oh.tienda` to this Worker using Cloudflare's Custom Domains workflow, setting DNS only as instructed by Cloudflare. Avoid collisions with an existing route or hostname.
+- Verify HTTPS GET and HEAD root return `301 Location: https://ohwut.com/`. Check an unknown path and a foreign host return 404; POST root returns 405. Root query strings do not influence the target.
+- Do not route or modify `ohwut.com`, `wut.sale`, or any existing Worker. The new domain serves no independent HTML, sitemap, or canonical pages.
+
+The GitHub PR prepares source code only. Actual Cloudflare configuration, deployment, DNS attachment, live URL response checks and search-console submission remain manual.

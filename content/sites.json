@@ -619,5 +619,180 @@
         ]
       }
     ]
+  },
+  "min.ventures": {
+    "name": "Min Ventures",
+    "origin": "https://min.ventures",
+    "kind": "ventures",
+    "tagline": "Min Sihu's founder portfolio — ActaRoot, Inc. and OHWUT.",
+    "founder": {
+      "name": "Min Sihu",
+      "alternateNames": [
+        "Sihu Min",
+        "민시후"
+      ],
+      "location": "South Korea",
+      "age": {
+        "value": 13,
+        "asOf": "2026-11"
+      }
+    },
+    "ventures": [
+      {
+        "id": "actaroot",
+        "name": "ActaRoot, Inc.",
+        "type": "U.S. corporation",
+        "role": "Founded by Min Sihu",
+        "description": "The U.S. corporate entity behind OHWUT. ActaRoot is the company, distinct from the consumer-facing shopping platform.",
+        "relationship": "Parent operating company of OHWUT",
+        "url": "https://actaroot.com/",
+        "entityId": "https://actaroot.com/#organization"
+      },
+      {
+        "id": "ohwut",
+        "name": "OHWUT",
+        "type": "Shopping platform & brand",
+        "role": "Founded by Min Sihu · Founder & CEO",
+        "description": "Online shopping for the U.S. market, combining everyday retail purchases with eligible offers where prices decrease as more people participate.",
+        "relationship": "A shopping business and brand operated by ActaRoot, Inc.; not a separate corporation",
+        "url": "https://ohwut.com/",
+        "entityId": "https://actaroot.com/#brand-ohwut"
+      }
+    ],
+    "pages": [
+      {
+        "path": "",
+        "title": "Min Ventures | Companies Founded by Min Sihu",
+        "description": "Explore the ventures founded by Min Sihu: ActaRoot, Inc. and OHWUT. A founder-led portfolio connecting a U.S. company and a shopping brand.",
+        "h1": "Building ventures with a clear purpose.",
+        "intro": "Min Sihu is the founder of ActaRoot, Inc. and OHWUT. This is the home for the businesses and brands he builds.",
+        "sections": [
+          {
+            "heading": "Founded ventures",
+            "paragraphs": [
+              "Two distinct identities, one founder: ActaRoot, Inc. is the U.S. company behind OHWUT, while OHWUT is the shopping platform and consumer brand."
+            ],
+            "links": [
+              [
+                "View the ventures",
+                "/ventures/"
+              ]
+            ]
+          },
+          {
+            "heading": "A founder-led portfolio",
+            "paragraphs": [
+              "Based in South Korea, Min Sihu works across company building and consumer commerce. He identifies himself as Founder & CEO of OHWUT."
+            ],
+            "links": [
+              [
+                "About Min Sihu",
+                "/about/"
+              ],
+              [
+                "Official personal profile",
+                "https://msihu.com/"
+              ]
+            ]
+          },
+          {
+            "heading": "An official network",
+            "paragraphs": [
+              "Company information belongs to ActaRoot. The shopping experience belongs to OHWUT. Personal biographical information is published at msihu.com."
+            ],
+            "links": [
+              [
+                "ActaRoot, Inc.",
+                "https://actaroot.com/"
+              ],
+              [
+                "OHWUT",
+                "https://ohwut.com/"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ventures",
+        "title": "Founded Ventures | Min Ventures",
+        "description": "ActaRoot, Inc. and OHWUT: the company and shopping brand founded by Min Sihu, with their official sources and corporate relationship.",
+        "h1": "Founded ventures.",
+        "intro": "A portfolio of companies and brands founded by Min Sihu, with each business identified by its actual role.",
+        "sections": [
+          {
+            "heading": "ActaRoot, Inc.",
+            "paragraphs": [
+              "ActaRoot, Inc. is a U.S. corporation founded by Min Sihu. It serves as the corporate entity behind OHWUT, rather than as the shopping storefront."
+            ],
+            "links": [
+              [
+                "Visit ActaRoot",
+                "https://actaroot.com/"
+              ]
+            ]
+          },
+          {
+            "heading": "OHWUT",
+            "paragraphs": [
+              "OHWUT is a consumer-facing online shopping platform and brand serving the United States. It combines conventional shopping with purchase offers whose pricing responds to participation."
+            ],
+            "links": [
+              [
+                "Explore OHWUT",
+                "https://ohwut.com/"
+              ]
+            ]
+          },
+          {
+            "heading": "Company and brand",
+            "paragraphs": [
+              "ActaRoot and OHWUT are not two separate corporations. ActaRoot, Inc. is the operating company; OHWUT is the consumer shopping business and brand."
+            ],
+            "links": [
+              [
+                "About the founder",
+                "/about/"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "path": "about",
+        "title": "About Min Sihu | Founder of ActaRoot and OHWUT",
+        "description": "Learn about Min Sihu (Sihu Min, 민시후), a South Korea-based founder of ActaRoot, Inc. and OHWUT.",
+        "h1": "Min Sihu.",
+        "intro": "Founder and entrepreneur based in South Korea.",
+        "sections": [
+          {
+            "heading": "Founder",
+            "paragraphs": [
+              "Min Sihu, also written as Sihu Min and 민시후, founded ActaRoot, Inc., a U.S. corporation, and OHWUT, the shopping platform and brand.",
+              "He identifies himself as OHWUT Founder & CEO. His founder portfolio is presented here; his official personal profile is at msihu.com."
+            ],
+            "links": [
+              [
+                "Official personal site",
+                "https://msihu.com/"
+              ]
+            ]
+          },
+          {
+            "heading": "What he builds",
+            "paragraphs": [
+              "His work connects a U.S. corporate organization with a consumer shopping experience designed around everyday purchases and participation-linked price reductions.",
+              "The ventures are shown as an evolving founder portfolio, with each business linked to its official domain."
+            ],
+            "links": [
+              [
+                "Founded ventures",
+                "/ventures/"
+              ]
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
