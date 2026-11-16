@@ -85,13 +85,13 @@ test("all official cross-site HTML links lead to published pages; no unapproved 
  const published=new Set(Object.values(sites).flatMap(site=>site.pages.map(page=>site.origin+"/"+(page.path?page.path+"/":""))));
  for(const [domain,site] of Object.entries(sites))for(const page of site.pages){
   const html=text("sites/"+domain+"/"+(page.path?page.path+"/":"")+"index.html");
-  const raw=html.match(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/)?.[1];
+  const raw=html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
   assert.ok(raw);
   const graph=JSON.parse(raw)["@graph"];
   const person=graph.find(e=>e["@id"]==="https://msihu.com/#person");
   assert.equal(person.url,"https://msihu.com/");
   assert.ok(!person.sameAs||person.sameAs.length===0);
-  for(const match of html.matchAll(/href="(https:\\/\\/[^"]+)"/g)){
+  for(const match of html.matchAll(/href="(https:\/\/[^"]+)"/g)){
    const link=new URL(match[1]);
    if(Object.hasOwn(sites,link.hostname))assert.ok(published.has(link.origin+link.pathname),"broken official link: "+match[1]);
   }
