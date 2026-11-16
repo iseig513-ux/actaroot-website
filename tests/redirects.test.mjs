@@ -45,7 +45,7 @@ test("oh.tienda fails closed for paths, non-HTTPS hosts and methods",()=>{
 test("acr.business consolidates verified company pages at canonical ActaRoot URLs", () => {
   for (const host of ["acr.business", "www.acr.business"]) {
     for (const path of ["/", "/about", "/brands/", "/founder/", "/faq/"]) {
-      const target = path === "/" ? "/" : path.replace(/\\/+$/, "") + "/";
+      const target = path.endsWith("/") ? path : path + "/";
       const response = acr(req("https://" + host + path + "?next=https://evil.example"));
       assert.equal(response.status, 301);
       assert.equal(response.headers.get("Location"), "https://actaroot.com" + target);
