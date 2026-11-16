@@ -1,36 +1,32 @@
-# ActaRoot & Min — five-domain SEO/GEO foundation
+# ActaRoot / Min Sihu — official SEO and sharing domains
 
-This branch **replaces the old Framer-exported ActaRoot website** and associated large assets with an accessible, fact-based, English-first **official company and founder knowledge foundation**. The replacement is confined to a GitHub work branch until reviewed. No Cloudflare/DNS/live deployment happens here.
+This repository builds two public information sites for the existing Cloudflare Pages projects and maintains the OHWUT short-link Worker. Existing production domains, DNS/email records, Pages bindings, and the OHWUT shopping service are not changed by this code-only PR.
 
-| Domain | Purpose | Deployable artifact |
+| Current domain | Purpose | Artifact |
 |---|---|---|
-| actaroot.com | Official company, brand, founder, FAQ — 5 pages | `sites/actaroot.com` |
-| msihu.com | Primary profile, about, projects and FAQ — 4 pages | `sites/msihu.com` |
-| min.tienda | Distinct secondary profile for the same person — 1 page | `sites/min.tienda` |
-| oh.tin | Root-only permanent redirect to ohwut.com | `workers/oh-tin` |
-| wut.sale | Root-only redirect and safe future sharing foundation | `workers/wut-sale` |
+| actaroot.com | ActaRoot, Inc. company, founder, brand and FAQ (5 pages) | `sites/actaroot.com` |
+| msihu.com | Min Sihu's single official personal site, projects and FAQ (4 pages) | `sites/msihu.com` |
+| wut.sale | OHWUT root redirect and safe future sharing links | `workers/wut-sale` |
 
-**OHWUT official service source remains `https://ohwut.com/` and is not changed.** No other domain, Stripe logic, checkout, fulfillment, external DNS or brand configuration is modified.
+OHWUT's official shopping service stays at `https://ohwut.com/` and is **only referenced**, not modified. All other domains are outside this repository's current build and deployment scope.
 
-## Run / validate
+## Build and test
+
 ```bash
+npm run build
 npm run check
-# generated static sites available under sites/<domain>/
 ```
 
-No npm dependencies. GitHub Actions executes the same tests and checks reproducible build output.
+Node 20+ is required; no third-party npm packages. `npm run build` generates the two committed `sites/<domain>` directories for existing Cloudflare Pages output directory compatibility. CI runs tests and verifies reproducible build output.
 
-## Included
-- Visible answer-first content and unique title/H1/descriptions on every indexed page
-- Correct self-canonicals, Open Graph, Twitter cards, mobile styles, SVG initial favicons, real 404 pages
-- Schema.org Organization/Person/Brand/WebSite/WebPage/ProfilePage/BreadcrumbList IDs and relationships
-- Ten rich, public HTML pages with direct answer copy, consistent named entities and visible founder/brand relationships
-- FAQPage schema on factual Q&A pages and connected JSON-LD entity identifiers
-- Per-domain sitemap and robots.txt; ChatGPT Search, Claude Search, Google/Gemini and Perplexity access policies
-- Separate search and training crawler preferences for GPTBot and ClaudeBot
-- Per-site optional `llms.txt`, `llms-full.txt` and generated `facts.json`, all derived from verified public content
-- Public editorial rules and crawler behavior documented in `docs/AI_DISCOVERY.md` and `docs/PUBLIC_COPY_POLICY.md`
-- Two Cloudflare Worker implementations, fail-closed share mapping and redirect tests
-- No auto-deploy: manual setup in `docs/DEPLOY_AND_INDEX.md`
+## Included SEO/GEO features
 
-Start with `docs/ENTITY_AND_CONTENT.md`, `docs/SHARE_LINKS.md`, and `docs/DEPLOY_AND_INDEX.md` for content, redirects and next steps.
+- Nine readable, responsive pages with unique titles, headings, descriptions, self-canonicals, Open Graph, Twitter cards and real noindex 404s.
+- Person `https://msihu.com/#person`, Organization `https://actaroot.com/#organization`, and OHWUT Brand `https://actaroot.com/#brand-ohwut` with interconnected Schema.org markup, WebPage types, breadcrumb and FAQPage entities.
+- Per-site XML sitemaps and robots.txt directives for Google, Bing, ChatGPT Search, Claude Search, Perplexity, plus independent training-crawler controls.
+- Public `llms.txt`, `llms-full.txt` and `facts.json` generated from visible source content.
+- `wut.sale` Worker using fail-closed approved-link lookup (no arbitrary off-site redirect).
+
+Relevant technical and editorial documentation: `docs/ENTITY_AND_CONTENT.md`, `docs/AI_DISCOVERY.md`, `docs/PUBLIC_COPY_POLICY.md`, `docs/SHARE_LINKS.md`, and `docs/DEPLOY_AND_INDEX.md`.
+
+No auto-deploy or automatic PR merge is configured.

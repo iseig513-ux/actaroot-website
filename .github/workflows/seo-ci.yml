@@ -1,7 +1,7 @@
-name: Five-domain SEO validation
+name: ActaRoot and Min Sihu SEO validation
 on:
   push:
-    branches: ["work/seo-geo-five-domains-20261116"]
+    branches: ["main", "fix/three-domain-seo-scope-20261116"]
   pull_request:
     paths:
       - "content/**"

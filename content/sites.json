@@ -46,7 +46,7 @@
             "heading": "Founder",
             "paragraphs": [
               "Min Sihu, also known as Sihu Min and 민시후, founded ActaRoot and OHWUT. He is based in South Korea.",
-              "His main personal website, msihu.com, describes his founder identity and projects. The separate profile min.tienda refers to the same person."
+              "His official personal website, msihu.com, describes his founder identity and projects."
             ],
             "links": [
               [
@@ -106,7 +106,7 @@
             "heading": "Founder and identity",
             "paragraphs": [
               "Min Sihu founded ActaRoot and OHWUT. His name also appears as Sihu Min and 민시후.",
-              "The founder's main personal website is msihu.com. The name Min is also used on min.tienda, a separate profile of the same founder."
+              "The founder's official personal website is msihu.com."
             ],
             "links": [
               [
@@ -226,19 +226,14 @@
             ]
           },
           {
-            "heading": "Official founder profiles",
+            "heading": "Official founder profile",
             "paragraphs": [
-              "The primary personal source for Min Sihu's background and projects is msihu.com.",
-              "A separate profile using the shorter name Min appears at min.tienda and identifies the same person."
+              "The primary personal source for Min Sihu's background and projects is msihu.com."
             ],
             "links": [
               [
                 "Min Sihu",
                 "https://msihu.com/"
-              ],
-              [
-                "Min",
-                "https://min.tienda/"
               ]
             ]
           }
@@ -348,7 +343,7 @@
           {
             "heading": "Where is Min Sihu's official profile?",
             "paragraphs": [
-              "Min Sihu's primary personal website is https://msihu.com/. His separate profile under the name Min is https://min.tienda/."
+              "Min Sihu's official personal website is https://msihu.com/."
             ],
             "links": [
               [
@@ -421,16 +416,12 @@
             "heading": "One identity, consistent names",
             "paragraphs": [
               "Min Sihu and Sihu Min are name-order variations referring to the same person. His Korean name is 민시후.",
-              "This website is his main personal profile. min.tienda is a shorter identity page using the name Min."
+              "This website is his official personal profile."
             ],
             "links": [
               [
                 "Founder FAQ",
                 "/faq/"
-              ],
-              [
-                "Min",
-                "https://min.tienda/"
               ]
             ]
           }
@@ -478,19 +469,15 @@
             ]
           },
           {
-            "heading": "Projects and connected profiles",
+            "heading": "Projects and official sources",
             "paragraphs": [
-              "The primary personal source for his founder background and projects is msihu.com. A shorter profile is also published at min.tienda.",
+              "The official personal source for his founder background and projects is msihu.com.",
               "The company and brand maintain separate official websites so each has a clearly identified information source."
             ],
             "links": [
               [
                 "Projects",
                 "/projects/"
-              ],
-              [
-                "Min profile",
-                "https://min.tienda/"
               ]
             ]
           }
@@ -545,15 +532,10 @@
           {
             "heading": "Official sources",
             "paragraphs": [
-              "The primary personal site is msihu.com, with an additional short-form personal profile at min.tienda.",
+              "The official personal site is msihu.com.",
               "ActaRoot's corporate reference is actaroot.com; OHWUT's official shopping domain is ohwut.com."
             ],
-            "links": [
-              [
-                "Min",
-                "https://min.tienda/"
-              ]
-            ]
+            "links": []
           }
         ]
       },
@@ -628,79 +610,11 @@
             "links": []
           },
           {
-            "heading": "What are Min Sihu's official personal websites?",
+            "heading": "What is Min Sihu's official personal website?",
             "paragraphs": [
-              "The primary personal website is https://msihu.com/. A shorter profile appears at https://min.tienda/."
+              "The official personal website is https://msihu.com/."
             ],
             "links": []
-          }
-        ]
-      }
-    ]
-  },
-  "min.tienda": {
-    "name": "Min | Founder Profile",
-    "origin": "https://min.tienda",
-    "kind": "alias",
-    "tagline": "Min is Min Sihu, founder of ActaRoot and OHWUT.",
-    "pages": [
-      {
-        "path": "",
-        "title": "Min | Min Sihu, Founder of ActaRoot and OHWUT",
-        "description": "Min is Min Sihu (민시후), South Korea-based founder of ActaRoot, Inc. and OHWUT.",
-        "h1": "Min",
-        "intro": "The founder behind ActaRoot and OHWUT.",
-        "sections": [
-          {
-            "heading": "Min Sihu",
-            "paragraphs": [
-              "Min is a short name used by Min Sihu, also known as Sihu Min and 민시후.",
-              "He is a 13-year-old founder based in South Korea. His primary personal website is msihu.com."
-            ],
-            "links": []
-          },
-          {
-            "heading": "ActaRoot",
-            "paragraphs": [
-              "Min Sihu founded ActaRoot, Inc., the U.S. corporation behind OHWUT.",
-              "The company publishes its official information at actaroot.com."
-            ],
-            "links": [
-              [
-                "ActaRoot",
-                "https://actaroot.com/"
-              ]
-            ]
-          },
-          {
-            "heading": "OHWUT",
-            "paragraphs": [
-              "Min Sihu founded OHWUT and identifies himself as its founder and CEO.",
-              "OHWUT is an online shopping platform that connects ordinary purchasing with participation-linked price reductions."
-            ],
-            "links": [
-              [
-                "OHWUT",
-                "https://ohwut.com/"
-              ]
-            ]
-          },
-          {
-            "heading": "The same founder",
-            "paragraphs": [
-              "Min and Min Sihu refer to the same person. This domain offers a concise identity page under the shorter name Min.",
-              "For a fuller personal profile, founder background and project descriptions, visit msihu.com."
-            ],
-            "links": [
-              [
-                "Min Sihu full profile",
-                "https://msihu.com/"
-              ],
-              [
-                "Min Sihu projects",
-                "https://msihu.com/projects/"
-              ]
-            ]
           }
         ]
       }

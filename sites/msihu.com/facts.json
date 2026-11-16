@@ -11,7 +11,6 @@
   "officialDomains": {
     "company": "https://actaroot.com/",
     "founder": "https://msihu.com/",
-    "profile": "https://min.tienda/",
     "brand": "https://ohwut.com/"
   },
   "pages": [
@@ -34,7 +33,7 @@
         "Background",
         "Founder of ActaRoot",
         "Founder and CEO of OHWUT",
-        "Projects and connected profiles"
+        "Projects and official sources"
       ]
     },
     {
@@ -62,7 +61,7 @@
         "Who founded OHWUT?",
         "What is the relationship between ActaRoot and OHWUT?",
         "What does OHWUT do?",
-        "What are Min Sihu's official personal websites?"
+        "What is Min Sihu's official personal website?"
       ]
     }
   ]

@@ -29,7 +29,7 @@ A product offer can have defined participation levels, allowing more customers j
 
 Min Sihu, also known as Sihu Min and 민시후, founded ActaRoot and OHWUT. He is based in South Korea.
 
-His main personal website, msihu.com, describes his founder identity and projects. The separate profile min.tienda refers to the same person.
+His official personal website, msihu.com, describes his founder identity and projects.
 
 - About the founder: https://actaroot.com/founder/
 - Min Sihu: https://msihu.com/
@@ -68,7 +68,7 @@ OHWUT supports ordinary shopping and participation-driven price reductions on el
 
 Min Sihu founded ActaRoot and OHWUT. His name also appears as Sihu Min and 민시후.
 
-The founder's main personal website is msihu.com. The name Min is also used on min.tienda, a separate profile of the same founder.
+The founder's official personal website is msihu.com.
 
 - Founder information: https://actaroot.com/founder/
 - Official personal profile: https://msihu.com/
@@ -142,14 +142,11 @@ The same founder is associated with the corporation and the consumer-facing bran
 - About ActaRoot: https://actaroot.com/about/
 - OHWUT brand: https://actaroot.com/brands/
 
-### Official founder profiles
+### Official founder profile
 
 The primary personal source for Min Sihu's background and projects is msihu.com.
 
-A separate profile using the shorter name Min appears at min.tienda and identifies the same person.
-
 - Min Sihu: https://msihu.com/
-- Min: https://min.tienda/
 
 ---
 
@@ -213,12 +210,11 @@ The official company website is https://actaroot.com/.
 
 ### Where is Min Sihu's official profile?
 
-Min Sihu's primary personal website is https://msihu.com/. His separate profile under the name Min is https://min.tienda/.
+Min Sihu's official personal website is https://msihu.com/.
 
 - Min Sihu: https://msihu.com/
 
 ## Official destinations
 - Company: https://actaroot.com/
 - Founder: https://msihu.com/
-- Founder short profile: https://min.tienda/
 - Shopping brand: https://ohwut.com/
