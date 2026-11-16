@@ -1,11 +1,5 @@
-import test from "node:test";import assert from "node:assert/strict";import {handleRequest as oh} from "../workers/oh-tin/src/index.mjs";import {handleRequest as wut} from "../workers/wut-sale/src/index.mjs";import {resolveApprovedLink} from "../workers/wut-sale/src/registry.mjs";
+import test from "node:test";import assert from "node:assert/strict";import {handleRequest as wut} from "../workers/wut-sale/src/index.mjs";import {resolveApprovedLink} from "../workers/wut-sale/src/registry.mjs";
 const req=(u,method="GET")=>new Request(u,{method,redirect:"manual"});
-test("oh.tin root permanently redirects with canonical target",()=>{
- for(const host of ["oh.tin","www.oh.tin"]){const r=oh(req("https://"+host+"/"));assert.equal(r.status,301);assert.equal(r.headers.get("Location"),"https://ohwut.com/")}
- assert.equal(oh(req("https://oh.tin/other")).status,404);
- assert.equal(oh(req("https://malicious.example/")).status,404);
- assert.equal(oh(req("https://oh.tin/","POST")).status,405);
-});
 test("wut.sale root redirects; unused paths and open redirect inputs cannot redirect",()=>{
  for(const h of ["wut.sale","www.wut.sale"]){const r=wut(req("https://"+h+"/"));assert.equal(r.status,301);assert.equal(r.headers.get("Location"),"https://ohwut.com/")}
  for(const p of ["/p/example","/s/example","/c/example","/?url=https://bad.example"]) {
@@ -20,4 +14,20 @@ test("approved future links accept official HTTPS only and remain temporary redi
  for(const p of ["/attack","/port","/login","/cred","/unknown"])assert.equal(resolveApprovedLink(p,links),null,p);
  const r=wut(req("https://wut.sale/approved"),links);assert.equal(r.status,302);assert.equal(r.headers.get("Location"),links["/approved"]);
  assert.equal(r.headers.get("Cache-Control"),"no-store");
+});
+
+test("wut.sale rejects unsupported methods, hosts, unregistered paths and malicious target origins",()=>{
+ assert.equal(wut(req("https://wut.sale/","POST")).status,405);
+ assert.equal(wut(req("https://other.example/")).status,404);
+ assert.equal(wut(req("https://wut.sale/not-registered")).headers.get("X-Robots-Tag"),"noindex");
+ const links={
+  "/external":"https://malicious.example/path",
+  "/insecure":"http://ohwut.com/item",
+  "/credentials":"https://user:pass@ohwut.com/path",
+  "/fragment":"https://ohwut.com/path#frag",
+  "/admin":"https://ohwut.com/admin",
+  "/valid":"https://ohwut.com/products/sample"
+ };
+ for(const path of ["/external","/insecure","/credentials","/fragment","/admin"])assert.equal(wut(req("https://wut.sale"+path),links).status,404,path);
+ assert.equal(wut(req("https://wut.sale/valid"),links).headers.get("Location"),links["/valid"]);
 });

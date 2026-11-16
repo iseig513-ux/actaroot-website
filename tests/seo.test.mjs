@@ -1,8 +1,8 @@
 import test from "node:test";import assert from "node:assert/strict";import {readFileSync,existsSync,readdirSync} from "node:fs";import {resolve,join} from "node:path";
 const root=resolve(".");const sites=JSON.parse(readFileSync(join(root,"content/sites.json"),"utf8"));
 const text=p=>readFileSync(join(root,p),"utf8");
-test("only three indexable canonical domains, each with distinct page metadata and valid JSON-LD",()=>{
- assert.deepEqual(Object.keys(sites).sort(),["actaroot.com","min.tienda","msihu.com"]);
+test("exactly two indexable official sites with unique canonical metadata and valid JSON-LD",()=>{
+ assert.deepEqual(Object.keys(sites).sort(),["actaroot.com","msihu.com"]);
  const titles=new Set();
  for(const [domain,site] of Object.entries(sites)){for(const page of site.pages){
   const p="sites/"+domain+"/"+(page.path?page.path+"/":"")+"index.html";assert.ok(existsSync(join(root,p)),p);
@@ -43,7 +43,7 @@ test("sitemaps match real HTML and canonical only; robots separate search and tr
  }
 });
 test("published internal HTML links resolve and no unapproved domains are built",()=>{
- const allowed=new Set(["actaroot.com","msihu.com","min.tienda","ohwut.com"]);
+ const allowed=new Set(["actaroot.com","msihu.com","ohwut.com"]);
  for(const [domain,site] of Object.entries(sites))for(const page of site.pages){
   const html=text("sites/"+domain+"/"+(page.path?page.path+"/":"")+"index.html");
   for(const m of html.matchAll(/href="(https:\/\/[^"]+)"/g)){
@@ -57,4 +57,43 @@ test("published internal HTML links resolve and no unapproved domains are built"
 });
 test("old Framer exported site files are excluded from replacement tree",()=>{
  for(const p of ["index.html","framerusercontent.com","fonts.gstatic.com"]){assert.equal(existsSync(join(root,p)),false,"legacy root still present: "+p)}
+});
+
+test("only the approved built sites and wut.sale Worker remain",()=>{
+ assert.deepEqual(readdirSync(join(root,"sites")).sort(),[".gitkeep","actaroot.com","msihu.com"]);
+ assert.equal(existsSync(join(root,"workers","oh-tin")),false);
+ assert.ok(existsSync(join(root,"workers","wut-sale","src","index.mjs")));
+ for(const [domain,site] of Object.entries(sites)){
+  const facts=JSON.parse(text("sites/"+domain+"/facts.json"));
+  assert.deepEqual(Object.keys(facts.officialDomains).sort(),["brand","company","founder"]);
+  assert.equal(facts.entityIdentifiers.person,"https://msihu.com/#person");
+  assert.equal(facts.entityIdentifiers.organization,"https://actaroot.com/#organization");
+  assert.equal(facts.entityIdentifiers.brand,"https://actaroot.com/#brand-ohwut");
+  assert.equal(facts.canonicalOrigin,site.origin);
+ }
+});
+test("deprecated domains never appear in site outputs or editable source",()=>{
+ const retired=["min."+"tienda","oh."+"tin"];
+ const paths=["content/sites.json","scripts/build.mjs","README.md","docs/DEPLOY_AND_INDEX.md","docs/ENTITY_AND_CONTENT.md","docs/PUBLIC_COPY_POLICY.md"];
+ for(const [domain,site] of Object.entries(sites)){
+  const files=["index.html","404.html","facts.json","robots.txt","sitemap.xml","llms.txt","llms-full.txt",...site.pages.filter(p=>p.path).map(p=>p.path+"/index.html")];
+  for(const path of files)paths.push("sites/"+domain+"/"+path);
+ }
+ for(const path of paths)for(const old of retired)assert.ok(!text(path).includes(old),path+": "+old);
+});
+test("all official cross-site HTML links lead to published pages; no unapproved personal sameAs",()=>{
+ const published=new Set(Object.values(sites).flatMap(site=>site.pages.map(page=>site.origin+"/"+(page.path?page.path+"/":""))));
+ for(const [domain,site] of Object.entries(sites))for(const page of site.pages){
+  const html=text("sites/"+domain+"/"+(page.path?page.path+"/":"")+"index.html");
+  const raw=html.match(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/)?.[1];
+  assert.ok(raw);
+  const graph=JSON.parse(raw)["@graph"];
+  const person=graph.find(e=>e["@id"]==="https://msihu.com/#person");
+  assert.equal(person.url,"https://msihu.com/");
+  assert.ok(!person.sameAs||person.sameAs.length===0);
+  for(const match of html.matchAll(/href="(https:\\/\\/[^"]+)"/g)){
+   const link=new URL(match[1]);
+   if(Object.hasOwn(sites,link.hostname))assert.ok(published.has(link.origin+link.pathname),"broken official link: "+match[1]);
+  }
+ }
 });

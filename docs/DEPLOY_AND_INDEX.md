@@ -1,58 +1,51 @@
-# Deployment and search registration — manual approvals
+# Deployment and indexing — protect existing live services
 
-## Build
-- Requirements: Node.js >=20; no dependency installation or paid service.
-- From repository root: `npm run check`. `npm run build` generates exactly `sites/actaroot.com`, `sites/msihu.com`, `sites/min.tienda` from structured content; CI verifies deterministic outputs and redirects.
-- Generated HTML is readable without JavaScript. Favicon is a neutral initial-letter placeholder, not a verified registered logo.
+## Cloudflare Pages (already connected)
 
-## Cloudflare Pages (do not deploy until approved)
-Create **three separate Pages projects** attached to this repo, each with build command `npm run build` and output directory:
-- actaroot.com: `sites/actaroot.com`
-- msihu.com: `sites/msihu.com`
-- min.tienda: `sites/min.tienda`
+Keep the existing `actaroot.com` and `msihu.com` Cloudflare Pages projects, DNS entries, MX/TXT records, custom domains and service bindings unchanged. This change only updates GitHub code.
 
-For each, attach only the named apex domain as custom domain after checking DNS ownership, and configure www-to-apex 301 rules limited to that hostname. Confirm SSL/TLS certificates.
+| Official indexed website | Existing build command | Output directory |
+|---|---|---|
+| actaroot.com | `npm run build` | `sites/actaroot.com` |
+| msihu.com | `npm run build` | `sites/msihu.com` |
 
-### Optional HTML verification meta tags
-Google domain ownership via DNS TXT remains the preferred first step. If a site-specific HTML meta method is required, set the following environment variables in the **matching site's** Pages build settings (never commit actual tokens):
+Requirements: Node.js >=20, no npm dependencies. `npm run check` builds both sites and runs tests. Generated HTML works without client JavaScript. Published sitemap, robots.txt, self-referential canonicals, JSON-LD, FAQ, 404, metadata, AI-crawler access and alternate discovery files remain.
+
+### Optional verification meta tags
+
+Domain-property verification through Google DNS TXT is configured outside this repository. If an existing Pages project needs HTML verification, the generator supports these site-specific **build** environment variables (never commit tokens):
+
 - `GOOGLE_SITE_VERIFICATION_ACTAROOT_COM`, `BING_SITE_VERIFICATION_ACTAROOT_COM`
 - `GOOGLE_SITE_VERIFICATION_MSIHU_COM`, `BING_SITE_VERIFICATION_MSIHU_COM`
-- `GOOGLE_SITE_VERIFICATION_MIN_TIENDA`, `BING_SITE_VERIFICATION_MIN_TIENDA`
 
-The generator emits Google's `google-site-verification` and Bing's `msvalidate.01` tags only when their respective variables are present. CI uses no tokens and never prints them.
+No additional Pages site is created here.
 
-Make no changes to ohwut.com or other Cloudflare zones. The Pages projects and DNS have **not** been created by this commit.
+## wut.sale Worker (no route changes)
 
-## Redirect Workers (do not deploy until approved)
-- Two independent Worker projects: `workers/oh-tin` and `workers/wut-sale`.
-- The Wrangler configs specify code only, no routes. Manually bind each Worker to its own apex and www custom domains if ownership/DNS permits, and validate TLS before activating.
-- oh.tin root: 301 to `https://ohwut.com/`; non-root unknown paths 404.
-- wut.sale root: 301 to `https://ohwut.com/`; share paths return 404 until a real approved link mapping is added. No product pages or sitemaps for redirect domains.
-- Inspect any existing traffic and Cloudflare rules before attaching Worker routes so a live service is never overwritten. No production API or checkout routing is modified.
+`workers/wut-sale` remains. Its Wrangler config has no automatic Worker route binding. The `wut.sale` and `www.wut.sale` root returns 301 to `https://ohwut.com/`. Approved share links may redirect temporarily (302) to verified OHWUT HTTPS URLs; unknown links return 404 and cannot redirect to attacker-controlled destinations. The registry starts empty. Do not change an existing Cloudflare Worker route or publish a new one as part of this PR; separate approval is needed for deployment. Refer to `docs/SHARE_LINKS.md`.
+
+The OHWUT storefront, checkout, Stripe, backend, and UI are outside this repository's update scope.
 
 ## Google Search Console
-1. For each **indexable** site (actaroot.com, msihu.com, min.tienda), add a Domain property at https://search.google.com/search-console/ .
-2. Place Google's exact verification TXT record in only that site's DNS zone; verify after the site is served via HTTPS.
-3. Under Sitemaps, submit `https://<domain>/sitemap.xml` (actual domains only).
-4. Use URL Inspection for each real page and check HTTP 200, no `noindex`, the rendered content, user-declared canonical vs Google-selected canonical, and Coverage/Page indexing report.
-5. Submit indexing requests for actual eligible public pages; a successful request is not an indexing confirmation.
-6. Do not submit oh.tin and wut.sale as separate sitemap sites; their root permanent redirect is the signal.
+
+1. Verify the two existing indexable domains at https://search.google.com/search-console/ if needed.
+2. Submit `https://actaroot.com/sitemap.xml` and `https://msihu.com/sitemap.xml` only when these versions are served.
+3. Check live URL Inspection, rendered content, HTTP 200, canonical selection, and Page Indexing reports.
+4. Request recrawls of real published pages when appropriate. Submission does not itself mean successful indexing.
 
 ## Bing Webmaster Tools
-1. Add and verify the three indexable domains via https://www.bing.com/webmasters/ using Google Search Console import or DNS verification.
-2. Submit each sitemap; inspect crawl/indexing and SEO reports. Optional future IndexNow requires a site-specific ownership key and actual changed URLs; do not commit fabricated keys.
 
-## ChatGPT Search and AI crawlers
-- Per-domain robots.txt allows `OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `Googlebot`, `Google-Extended`, `PerplexityBot`, `Perplexity-User` and `Bingbot`. It separately blocks `GPTBot` and `ClaudeBot` training crawlers.
-- Check Cloudflare Bot Management/WAF and published searchbot IP ranges, if currently configured, before claiming live accessibility: https://developers.openai.com/api/docs/bots and https://openai.com/searchbot.json . These settings are not changed in this repo.
-- `llms.txt`, `llms-full.txt` and `facts.json` are optional companion resources generated from visible content; they are not treated as official ranking signals. See `docs/AI_DISCOVERY.md`.
-- Verify real public 200 pages and public crawler access after deployment; source code does not establish crawling or citations.
+Use https://www.bing.com/webmasters/ for the two indexable sites. Verify ownership, submit the same two sitemaps, and inspect crawler/index coverage. Do not commit fake IndexNow keys.
 
-## Diagnostics
-- Use `curl -I https://actaroot.com/`, `curl -I https://msihu.com/`, `curl -I https://min.tienda/`, and retrieve their live robots/sitemap; verify 200 + correct MIME.
-- Use `curl -I https://oh.tin/` and `curl -I https://wut.sale/` to verify 301 exact `Location: https://ohwut.com/`; unknown paths 404.
-- For duplicate canonical issues, compare live response code, canonical HTML, internal links, sitemap, www/HTTP forwarding and Google-selected canonical. Remove inconsistent signals, not robots-blocked copies.
-- Re-run CI and then use Google URL Inspection/Bing URL Inspection; log confirmed index statuses, never predict them.
+## AI search and crawler policy
 
-## Not performed by this task
-No DNS edits, Cloudflare binding, paid service, actual deployment, Google/Bing registration, Search Console verification, live crawling or indexing.
+Both sites' robots.txt allow `OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`, `Claude-User`, `Googlebot`, `Google-Extended`, `PerplexityBot`, `Perplexity-User` and `Bingbot`. Training crawlers `GPTBot` and `ClaudeBot` are separately blocked. These rules do not edit Cloudflare WAF policies or guarantee ranking. HTML and JSON-LD are the primary indexed content; `llms.txt`, `llms-full.txt` and `facts.json` remain supplementary resources. See `docs/AI_DISCOVERY.md`.
+
+## Manual post-merge checks
+
+- Confirm live home, robots and sitemap responses on `https://actaroot.com/` and `https://msihu.com/`.
+- Confirm the Person/Organization/Brand canonical IDs are correct on published HTML.
+- If `wut.sale` is already deployed, check root 301 to `https://ohwut.com/` and unknown paths 404 without changing any route.
+- Keep existing Pages configuration and domains untouched; verify the GitHub Actions CI and deterministic static generation before merge.
+
+No live Cloudflare/DNS edit, Worker deploy, domain connection, Google/Bing registration, indexing confirmation, or production OHWUT code change is made by this PR.

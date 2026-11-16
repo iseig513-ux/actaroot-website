@@ -12,7 +12,6 @@
 ## Related official sources
 - [ActaRoot, Inc.](https://actaroot.com/)
 - [Min Sihu](https://msihu.com/)
-- [Min](https://min.tienda/)
 - [OHWUT](https://ohwut.com/)
 
 ## Reference files
