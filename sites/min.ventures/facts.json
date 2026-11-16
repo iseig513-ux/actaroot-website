@@ -1,0 +1,63 @@
+{
+  "site": "Min Ventures",
+  "canonicalOrigin": "https://min.ventures",
+  "summary": "Min Sihu's founder portfolio — ActaRoot, Inc. and OHWUT.",
+  "primaryEntityId": "https://msihu.com/#person",
+  "entityIdentifiers": {
+    "person": "https://msihu.com/#person",
+    "organization": "https://actaroot.com/#organization",
+    "brand": "https://actaroot.com/#brand-ohwut"
+  },
+  "officialDomains": {
+    "company": "https://actaroot.com/",
+    "founder": "https://msihu.com/",
+    "brand": "https://ohwut.com/"
+  },
+  "pages": [
+    {
+      "url": "https://min.ventures/",
+      "title": "Min Ventures | Companies Founded by Min Sihu",
+      "description": "Explore the ventures founded by Min Sihu: ActaRoot, Inc. and OHWUT. A founder-led portfolio connecting a U.S. company and a shopping brand.",
+      "sections": [
+        "Founded ventures",
+        "A founder-led portfolio",
+        "An official network"
+      ]
+    },
+    {
+      "url": "https://min.ventures/ventures/",
+      "title": "Founded Ventures | Min Ventures",
+      "description": "ActaRoot, Inc. and OHWUT: the company and shopping brand founded by Min Sihu, with their official sources and corporate relationship.",
+      "sections": [
+        "ActaRoot, Inc.",
+        "OHWUT",
+        "Company and brand"
+      ]
+    },
+    {
+      "url": "https://min.ventures/about/",
+      "title": "About Min Sihu | Founder of ActaRoot and OHWUT",
+      "description": "Learn about Min Sihu (Sihu Min, 민시후), a South Korea-based founder of ActaRoot, Inc. and OHWUT.",
+      "sections": [
+        "Founder",
+        "What he builds"
+      ]
+    }
+  ],
+  "venturePortfolio": [
+    {
+      "name": "ActaRoot, Inc.",
+      "description": "The U.S. corporate entity behind OHWUT. ActaRoot is the company, distinct from the consumer-facing shopping platform.",
+      "relationship": "Parent operating company of OHWUT",
+      "officialSite": "https://actaroot.com/",
+      "entityId": "https://actaroot.com/#organization"
+    },
+    {
+      "name": "OHWUT",
+      "description": "Online shopping for the U.S. market, combining everyday retail purchases with eligible offers where prices decrease as more people participate.",
+      "relationship": "A shopping business and brand operated by ActaRoot, Inc.; not a separate corporation",
+      "officialSite": "https://ohwut.com/",
+      "entityId": "https://actaroot.com/#brand-ohwut"
+    }
+  ]
+}

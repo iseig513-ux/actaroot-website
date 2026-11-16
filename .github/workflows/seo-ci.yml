@@ -1,7 +1,7 @@
-name: ActaRoot and Min Sihu SEO validation
+name: ActaRoot, Min Sihu and Min Ventures SEO validation
 on:
   push:
-    branches: ["main", "fix/three-domain-seo-scope-20261116"]
+    branches: ["main", "feat/min-ventures-oh-tienda-20261116"]
   pull_request:
     paths:
       - "content/**"

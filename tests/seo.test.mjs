@@ -1,8 +1,8 @@
 import test from "node:test";import assert from "node:assert/strict";import {readFileSync,existsSync,readdirSync} from "node:fs";import {resolve,join} from "node:path";
 const root=resolve(".");const sites=JSON.parse(readFileSync(join(root,"content/sites.json"),"utf8"));
 const text=p=>readFileSync(join(root,p),"utf8");
-test("exactly two indexable official sites with unique canonical metadata and valid JSON-LD",()=>{
- assert.deepEqual(Object.keys(sites).sort(),["actaroot.com","msihu.com"]);
+test("exactly three indexable official sites with unique canonical metadata and valid JSON-LD",()=>{
+ assert.deepEqual(Object.keys(sites).sort(),["actaroot.com","min.ventures","msihu.com"]);
  const titles=new Set();
  for(const [domain,site] of Object.entries(sites)){for(const page of site.pages){
   const p="sites/"+domain+"/"+(page.path?page.path+"/":"")+"index.html";assert.ok(existsSync(join(root,p)),p);
@@ -43,7 +43,7 @@ test("sitemaps match real HTML and canonical only; robots separate search and tr
  }
 });
 test("published internal HTML links resolve and no unapproved domains are built",()=>{
- const allowed=new Set(["actaroot.com","msihu.com","ohwut.com"]);
+ const allowed=new Set(["actaroot.com","min.ventures","msihu.com","ohwut.com"]);
  for(const [domain,site] of Object.entries(sites))for(const page of site.pages){
   const html=text("sites/"+domain+"/"+(page.path?page.path+"/":"")+"index.html");
   for(const m of html.matchAll(/href="(https:\/\/[^"]+)"/g)){
@@ -59,10 +59,10 @@ test("old Framer exported site files are excluded from replacement tree",()=>{
  for(const p of ["index.html","framerusercontent.com","fonts.gstatic.com"]){assert.equal(existsSync(join(root,p)),false,"legacy root still present: "+p)}
 });
 
-test("only the approved built sites and wut.sale Worker remain",()=>{
- assert.deepEqual(readdirSync(join(root,"sites")).sort(),[".gitkeep","actaroot.com","msihu.com"]);
+test("approved built sites and independent redirect Workers remain",()=>{
+ assert.deepEqual(readdirSync(join(root,"sites")).sort(),[".gitkeep","actaroot.com","min.ventures","msihu.com"]);
  assert.equal(existsSync(join(root,"workers","oh-tin")),false);
- assert.ok(existsSync(join(root,"workers","wut-sale","src","index.mjs")));
+ assert.ok(existsSync(join(root,"workers","wut-sale","src","index.mjs")));assert.ok(existsSync(join(root,"workers","oh-tienda","src","index.mjs")));
  for(const [domain,site] of Object.entries(sites)){
   const facts=JSON.parse(text("sites/"+domain+"/facts.json"));
   assert.deepEqual(Object.keys(facts.officialDomains).sort(),["brand","company","founder"]);
@@ -90,7 +90,7 @@ test("all official cross-site HTML links lead to published pages; no unapproved 
   const graph=JSON.parse(raw)["@graph"];
   const person=graph.find(e=>e["@id"]==="https://msihu.com/#person");
   assert.equal(person.url,"https://msihu.com/");
-  assert.ok(!person.sameAs||person.sameAs.length===0);
+  if(domain==="min.ventures")assert.deepEqual(person.sameAs,["https://min.ventures/"]);else assert.ok(!person.sameAs||person.sameAs.length===0);
   for(const match of html.matchAll(/href="(https:\/\/[^"]+)"/g)){
    const link=new URL(match[1]);
    if(Object.hasOwn(sites,link.hostname))assert.ok(published.has(link.origin+link.pathname),"broken official link: "+match[1]);

@@ -1,3 +1,4 @@
+import {renderVentureHtml, ventureStyle} from "./venture-site.mjs";
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
@@ -62,7 +63,7 @@ function renderFull(site){
 }
 
 function renderFacts(site){
- return JSON.stringify({site:site.name,canonicalOrigin:site.origin,summary:site.tagline,primaryEntityId:site.kind==="company"?"https://actaroot.com/#organization":"https://msihu.com/#person",entityIdentifiers:{person:"https://msihu.com/#person",organization:"https://actaroot.com/#organization",brand:"https://actaroot.com/#brand-ohwut"},officialDomains:{company:"https://actaroot.com/",founder:"https://msihu.com/",brand:"https://ohwut.com/"},pages:site.pages.map(p=>({url:absolute(site,p.path),title:p.title,description:p.description,sections:p.sections.map(s=>s.heading)}))},null,2);
+ return JSON.stringify({site:site.name,canonicalOrigin:site.origin,summary:site.tagline,primaryEntityId:site.kind==="company"?"https://actaroot.com/#organization":"https://msihu.com/#person",entityIdentifiers:{person:"https://msihu.com/#person",organization:"https://actaroot.com/#organization",brand:"https://actaroot.com/#brand-ohwut"},officialDomains:{company:"https://actaroot.com/",founder:"https://msihu.com/",brand:"https://ohwut.com/"},pages:site.pages.map(p=>({url:absolute(site,p.path),title:p.title,description:p.description,sections:p.sections.map(s=>s.heading)})),...(site.kind==="ventures"?{venturePortfolio:site.ventures.map(v=>({name:v.name,description:v.description,relationship:v.relationship,officialSite:v.url,entityId:v.entityId}))}:{})},null,2);
 }
 
 function renderFavicon(site){
@@ -81,8 +82,8 @@ writeFileSync(join(outputRoot,".gitkeep"),"# Build outputs are committed under s
 for(const [domain,site] of Object.entries(config)){
  const dir=join(outputRoot,domain);mkdirSync(dir,{recursive:true});
  const write=(path,text)=>{const destination=join(dir,path);mkdirSync(dirname(destination),{recursive:true});writeFileSync(destination,text+"\n","utf8")};
- for(const page of site.pages)write(page.path?page.path+"/index.html":"index.html",renderHtml(site,page));
+ for(const page of site.pages)write(page.path?page.path+"/index.html":"index.html",site.kind==="ventures"?renderVentureHtml(site,page):renderHtml(site,page));
  write("sitemap.xml",renderSitemap(site));write("robots.txt",renderRobots(site));write("llms.txt",renderLlms(site));write("llms-full.txt",renderFull(site));write("facts.json",renderFacts(site));
- write("404.html",render404(site));write("favicon.svg",renderFavicon(site));write("style.css",style);
+ write("404.html",render404(site));write("favicon.svg",renderFavicon(site));write("style.css",site.kind==="ventures"?ventureStyle:style);
 }
 console.log("Built "+Object.keys(config).join(", ")+" static sites.");

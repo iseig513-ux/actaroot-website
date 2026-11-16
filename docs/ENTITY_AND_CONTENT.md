@@ -17,3 +17,10 @@ The static source generates optional `llms-full.txt` and `facts.json` from the s
 To add a real page: edit `content/sites.json` and add a unique page, title, description, visible sections and any true links. Run `npm run check` and commit regenerated `sites/` outputs. Only then submit updated sitemaps. No fake article, interview, FAQ, award or announcement pages are generated.
 
 Future content slots: company updates, history, interviews, press mentions, brand developments and Korean translations. Implement an actual translated URL first; only then add reciprocal `hreflang`. Add actual logo/social images only once verified and visible.
+
+
+## Founder portfolio extension
+
+`min.ventures` is a distinct public founder-and-ventures portfolio, not a second biographical home. It reuses the Person `https://msihu.com/#person`, Organization `https://actaroot.com/#organization`, and OHWUT Brand `https://actaroot.com/#brand-ohwut` identifiers. Its `/ventures/` page is a `CollectionPage` with an `ItemList` containing ActaRoot (company) and OHWUT (brand), rather than implying two separate companies. Its other two pages use `ProfilePage` and identify the same canonical person.
+
+`content/sites.json` contains the two venture entries, their entity IDs, relationship, URLs, and an age field with its `asOf` date for easy editorial revision. No unsupported success metrics, company filings or new ventures are supplied. The existing domains remain authoritative in their own scopes. After a real `min.ventures` deployment, add minimal reciprocal links to existing live sites as documented in `docs/DEPLOY_AND_INDEX.md`.
