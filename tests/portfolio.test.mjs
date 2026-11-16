@@ -11,7 +11,7 @@ test("portfolio pages expose venture meaning, correct entity IDs, and distinct e
  for(const p of data.pages){const path="sites/min.ventures/"+(p.path?p.path+"/":"")+"index.html";assert.ok(existsSync(join(root,path)));
   const html=read(path);assert.ok(html.includes('class="venture-row"')||p.path==="about");
   assert.ok(html.includes('class="hero-meta"'));assert.ok(html.includes("https://msihu.com/"));
-  const ld=JSON.parse(html.match(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/)[1])["@graph"];
+  const ld=JSON.parse(html.split('<script type="application/ld+json">')[1].split('</script>')[0])["@graph"];
   assert.ok(ld.some(n=>n["@id"]==="https://msihu.com/#person"));
   assert.ok(ld.some(n=>n["@id"]==="https://actaroot.com/#organization"));
   assert.ok(ld.some(n=>n["@id"]==="https://actaroot.com/#brand-ohwut"));
