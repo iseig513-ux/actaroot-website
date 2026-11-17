@@ -1,11 +1,11 @@
 # ActaRoot / Min Sihu / Min Ventures — official sites and sharing domains
 
-This repository builds two established information sites, a new founder portfolio, and two separately deployable OHWUT redirect Workers. Existing production domains, DNS/email records, Pages bindings, and the OHWUT shopping service are not changed by this code-only PR.
+This repository builds the ActaRoot information site, the Min Ventures founder portfolio, a permanent redirect from msihu.com to min.ventures, and separately deployable redirect Workers. Existing production domains, DNS/email records, Pages bindings, and the OHWUT shopping service are not changed by this code-only PR.
 
 | Current domain | Purpose | Artifact |
 |---|---|---|
 | actaroot.com | ActaRoot, Inc. company, founder, brand and FAQ (5 pages) | `sites/actaroot.com` |
-| msihu.com | Min Sihu's single official personal site, projects and FAQ (4 pages) | `sites/msihu.com` |
+| msihu.com | 301 redirect to `https://min.ventures/` (source pages retained for rollback) | `sites/msihu.com/_redirects` |
 | min.ventures | Min Sihu founder portfolio (Home, Ventures, About) | `sites/min.ventures` |\n| oh.tienda | OHWUT fixed redirect, root only | `workers/oh-tienda` |\n| wut.sale | OHWUT root redirect and safe future sharing links | `workers/wut-sale` |
 
 OHWUT's official shopping service stays at `https://ohwut.com/` and is **only referenced**, not modified. All other domains are outside this repository's current build and deployment scope.
@@ -18,6 +18,8 @@ npm run check
 ```
 
 Node 20+ is required; no third-party npm packages. `npm run build` generates three committed `sites/<domain>` directories for Cloudflare Pages output directory compatibility. CI runs tests and verifies reproducible build output.
+
+The existing `msihu.com` Cloudflare Pages project can serve a root-targeting `301` for all paths via its generated `_redirects` rule. `min.ventures` is left unchanged so its landing page can be replaced later. The redirect takes effect only after the `msihu.com` Pages project deploys the updated build output; GitHub alone does not change live traffic.
 
 ## Included SEO/GEO features
 
