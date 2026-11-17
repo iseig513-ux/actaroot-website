@@ -57,9 +57,9 @@ ${verificationTags(site)}<meta name="robots" content="index,follow,max-image-pre
 <meta name="twitter:description" content="${escapeHtml(page.description)}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">${ld}</script></head><body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header"><div class="wrap site-header-inner"><a class="brand" href="${site.origin}/">${escapeHtml(site.name)}</a><nav class="site-nav" aria-label="Main navigation">${menu}</nav></div></header>
-<main class="wrap" id="main"><div class="page-heading"><h1>${escapeHtml(page.h1)}</h1><p class="lead">${escapeHtml(page.intro)}</p></div><div class="info-list">${rows}</div></main>
+
+<nav aria-label="Navigation">${menu}</nav>
+<main><h1>${escapeHtml(page.h1)}</h1><p>${escapeHtml(page.intro)}</p>${rows}</main>
 </body></html>`;
 }
 
@@ -92,7 +92,7 @@ function renderFavicon(site){
 function render404(site){
  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Page not found | ${escapeHtml(site.name)}</title><link rel="canonical" href="${site.origin}/"><link rel="stylesheet" href="/style.css"></head><body><main class="wrap"><h1>Page not found</h1><p>This address is not a published page.</p><a href="${site.origin}/">Return home</a></main></body></html>`;
 }
-const style=":root{color-scheme:light;background:#ffffff;color:#111;font-family:Arial,Helvetica,sans-serif}\n*{box-sizing:border-box}\nhtml,body{background:#ffffff;color:#111}\nbody{margin:0;font-size:14px;line-height:1.55}\na{color:#111;text-decoration:underline;text-underline-offset:2px}\na:focus-visible{outline:2px solid #111;outline-offset:3px}\n.wrap{max-width:840px;margin:0 auto;padding-left:20px;padding-right:20px}\n.skip{position:absolute;top:0;left:-10000px;padding:5px;background:#fff}.skip:focus{left:6px}\n.site-header{border-bottom:1px solid #e8e8e8;background:#fff}\n.site-header-inner{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 20px;padding-top:15px;padding-bottom:15px;min-height:0}\n.brand{font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0}\n.site-nav{display:flex;flex-wrap:wrap;gap:7px 16px}\n.site-nav a{font-size:13px;text-decoration:underline;color:#333}\n.site-nav a[aria-current=page]{font-weight:700;color:#111}\n.page-heading{padding:0;border:0;margin:25px 0 22px}\n.page-heading h1{font-size:26px;line-height:1.25;font-weight:700;letter-spacing:0;margin:0 0 7px}\n.lead{font-size:14px;line-height:1.55;margin:0;color:#222;max-width:none}\n.info-list{padding:0 0 30px}\n.info-row{display:block;padding:0;margin:0 0 22px;border:0}\n.info-row h2{font-size:16px;line-height:1.4;font-weight:700;letter-spacing:0;margin:0 0 5px}\n.info-content{max-width:none}\n.info-content p{font-size:14px;line-height:1.55;color:#222;margin:0 0 8px}\n.info-content p:last-child{margin-bottom:0}\n.info-links{display:block;margin-top:7px}\n.info-links a{font-size:13px;font-weight:400;text-decoration:underline;margin-right:15px}\n.portfolio-list{margin:0 0 25px;padding:0;border:0}\n.portfolio-title{font-size:16px;line-height:1.4;font-weight:700;letter-spacing:0;margin:0 0 10px}\n.venture-row{display:block;border:0;padding:0;margin:0 0 20px}\n.venture-index,.venture-type{font-size:13px}\n.venture-row h2,.venture-main h3{font-size:16px;line-height:1.4;font-weight:700;letter-spacing:0;margin:0 0 5px}\n.venture-row p,.venture-main p{font-size:14px;line-height:1.55;color:#222;margin:0 0 7px}\n.venture-link{font-size:13px;font-weight:400;text-decoration:underline}\n.site-footer{display:none}\n@media(max-width:560px){.wrap{padding-left:15px;padding-right:15px}.site-header-inner{padding-top:12px;padding-bottom:12px;gap:7px 14px}.brand{width:100%}.page-heading{margin-top:21px}.page-heading h1{font-size:24px}.info-row{margin-bottom:20px}}\n";
+const style="html,body{background:#fff;color:#000}body{margin:12px;font:15px/1.45 Arial,Helvetica,sans-serif}a,a:visited{color:#000}";
 const outputRoot=join(root,"sites");
 rmSync(outputRoot,{recursive:true,force:true});
 mkdirSync(outputRoot,{recursive:true});
