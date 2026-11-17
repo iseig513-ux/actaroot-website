@@ -2,12 +2,14 @@
 
 ## Cloudflare Pages (already connected)
 
-Keep the existing `actaroot.com` and `msihu.com` Cloudflare Pages projects, DNS entries, MX/TXT records, custom domains and service bindings unchanged. This change only updates GitHub code.
+Keep existing Cloudflare Pages projects, DNS entries, MX/TXT records, custom domains and service bindings. The `msihu.com` Pages build adds a 301 redirect to `https://min.ventures/`; no DNS or email configuration changes are required.
 
 | Official indexed website | Existing build command | Output directory |
 |---|---|---|
 | actaroot.com | `npm run build` | `sites/actaroot.com` |
-| msihu.com | `npm run build` | `sites/msihu.com` |
+| msihu.com (301 redirect to min.ventures) | `npm run build` | `sites/msihu.com` |
+
+The generated `sites/msihu.com/_redirects` contains `/* https://min.ventures/ 301`. Cloudflare Pages applies the rule to all request paths, even when old HTML assets exist. Old HTML/source content is retained in Git for rollback, but it will no longer be served as an independent indexed site after deployment.
 
 Requirements: Node.js >=20, no npm dependencies. `npm run check` builds both sites and runs tests. Generated HTML works without client JavaScript. Published sitemap, robots.txt, self-referential canonicals, JSON-LD, FAQ, 404, metadata, AI-crawler access and alternate discovery files remain.
 
@@ -28,14 +30,14 @@ The OHWUT storefront, checkout, Stripe, backend, and UI are outside this reposit
 
 ## Google Search Console
 
-1. Verify the two existing indexable domains at https://search.google.com/search-console/ if needed.
-2. Submit `https://actaroot.com/sitemap.xml` and `https://msihu.com/sitemap.xml` only when these versions are served.
+1. Verify the destination domain `min.ventures` and `actaroot.com` at https://search.google.com/search-console/ if needed.
+2. Submit `https://actaroot.com/sitemap.xml` and `https://min.ventures/sitemap.xml` when these versions are served. Do not submit a redirected `msihu.com/sitemap.xml`.
 3. Check live URL Inspection, rendered content, HTTP 200, canonical selection, and Page Indexing reports.
 4. Request recrawls of real published pages when appropriate. Submission does not itself mean successful indexing.
 
 ## Bing Webmaster Tools
 
-Use https://www.bing.com/webmasters/ for the two indexable sites. Verify ownership, submit the same two sitemaps, and inspect crawler/index coverage. Do not commit fake IndexNow keys.
+Use https://www.bing.com/webmasters/ for the destination `min.ventures` and `actaroot.com`. Submit the destination sitemaps and inspect crawler/index coverage. Do not commit fake IndexNow keys.
 
 ## AI search and crawler policy
 
@@ -43,7 +45,7 @@ Both sites' robots.txt allow `OAI-SearchBot`, `ChatGPT-User`, `Claude-SearchBot`
 
 ## Manual post-merge checks
 
-- Confirm live home, robots and sitemap responses on `https://actaroot.com/` and `https://msihu.com/`.
+- Confirm `https://actaroot.com/` remains indexable, and that `https://msihu.com/`, `/about/`, `/projects/`, `/faq/` and `/sitemap.xml` return HTTP 301 with `Location: https://min.ventures/`. Test `www.msihu.com` only if that hostname is attached to the same Pages project. Confirm `https://min.ventures/` serves the existing site without a redirect loop.
 - Confirm the Person/Organization/Brand canonical IDs are correct on published HTML.
 - If `wut.sale` is already deployed, check root 301 to `https://ohwut.com/` and unknown paths 404 without changing any route.
 - Keep existing Pages configuration and domains untouched; verify the GitHub Actions CI and deterministic static generation before merge.

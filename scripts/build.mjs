@@ -103,5 +103,7 @@ for(const [domain,site] of Object.entries(config)){
  for(const page of site.pages)write(page.path?page.path+"/index.html":"index.html",site.kind==="ventures"?renderVentureHtml(site,page):renderHtml(site,page));
  write("sitemap.xml",renderSitemap(site));write("robots.txt",renderRobots(site));write("llms.txt",renderLlms(site));write("llms-full.txt",renderFull(site));write("facts.json",renderFacts(site));
  write("404.html",render404(site));write("favicon.svg",renderFavicon(site));write("style.css",site.kind==="ventures"?ventureStyle:style);
+ // Cloudflare Pages redirect for the retired personal domain; retain source HTML for rollback.
+ if(domain==="msihu.com")write("_redirects","/* https://min.ventures/ 301");
 }
 console.log("Built "+Object.keys(config).join(", ")+" static sites.");
