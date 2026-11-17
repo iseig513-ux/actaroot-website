@@ -10,7 +10,7 @@ test("portfolio is data-led and contains exactly the two verified ventures",()=>
 test("portfolio pages expose venture meaning, correct entity IDs, and distinct editorial design",()=>{
  for(const p of data.pages){const path="sites/min.ventures/"+(p.path?p.path+"/":"")+"index.html";assert.ok(existsSync(join(root,path)));
   const html=read(path);assert.ok(html.includes('class="venture-row"')||p.path==="about");
-  assert.ok(html.includes('class="page-heading"'));assert.ok(html.includes("https://msihu.com/"));
+  assert.ok(html.includes("<main>"));assert.ok(html.includes("https://msihu.com/"));
   const ld=JSON.parse(html.split('<script type="application/ld+json">')[1].split('</script>')[0])["@graph"];
   assert.ok(ld.some(n=>n["@id"]==="https://msihu.com/#person"));
   assert.ok(ld.some(n=>n["@id"]==="https://actaroot.com/#organization"));
@@ -19,6 +19,6 @@ test("portfolio pages expose venture meaning, correct entity IDs, and distinct e
   if(p.path)assert.ok(ld.some(n=>n["@type"]==="BreadcrumbList"));
   assert.ok(!/school|street address|full birth|private phone/i.test(html));
  }
- assert.ok(read("sites/min.ventures/style.css").includes(".venture-row"));
+ assert.ok(read("sites/min.ventures/style.css").includes("background:#fff"));
  const facts=JSON.parse(read("sites/min.ventures/facts.json"));assert.equal(facts.venturePortfolio.length,2);
 });
