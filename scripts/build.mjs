@@ -39,7 +39,7 @@ function verificationTags(site){
 }
 function renderHtml(site,page){
  const url=absolute(site,page.path);
- const menu=site.pages.map(p=>`<a href="${escapeHtml(absolute(site,p.path))}"${p.path===page.path?' aria-current="page"':""}>${escapeHtml(p.path?({"about":"Company","brands":"Brands","founder":"Founder","faq":"FAQ","projects":"Projects"}[p.path]||p.h1):"Home")}</a>`).join("");
+ const menu=site.pages.map(p=>`<a href="${escapeHtml(absolute(site,p.path))}"${p.path===page.path?' aria-current="page"':""}>${escapeHtml(p.path?({"about":site.kind==="company"?"Company":"About","brands":"Brands","founder":"Founder","faq":"FAQ","projects":"Projects"}[p.path]||p.h1):"Home")}</a>`).join("");
  const rows=page.sections.map(s=>`<section class="info-row"><h2>${escapeHtml(s.heading)}</h2><div class="info-content">${s.paragraphs.map(p=>`<p>${escapeHtml(p)}</p>`).join("")}${s.links?.length?`<div class="info-links">${s.links.map(([label,href])=>`<a href="${escapeHtml(href.startsWith("/")?site.origin+href:href)}">${escapeHtml(label)}</a>`).join("")}</div>`:""}</div></section>`).join("\n");
  const ld=JSON.stringify(makeSchema(site,page)).replace(/</g,"\\u003c");
  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
