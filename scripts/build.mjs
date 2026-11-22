@@ -100,10 +100,21 @@ writeFileSync(join(outputRoot,".gitkeep"),"# Build outputs are committed under s
 for(const [domain,site] of Object.entries(config)){
  const dir=join(outputRoot,domain);mkdirSync(dir,{recursive:true});
  const write=(path,text)=>{const destination=join(dir,path);mkdirSync(dirname(destination),{recursive:true});writeFileSync(destination,text+"\n","utf8")};
+ if(domain==="min.ventures"||domain==="msihu.com"){
+  // Preserve source data for future restoration, but publish no content.
+  // Cloudflare Pages advanced-mode Worker handles every URL, including old
+  // pages, sitemaps, robots, asset URLs, and legacy 301 redirect paths.
+  write("index.html","<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><meta name=\"robots\" content=\"noindex,nofollow,noarchive,nosnippet\"></head><body></body></html>");
+  write("404.html","<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><meta name=\"robots\" content=\"noindex,nofollow,noarchive,nosnippet\"></head><body></body></html>");
+  write("robots.txt","User-agent: *\nAllow: /");
+  write("_headers","/*\n  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet\n  Cache-Control: no-store");
+  write("_worker.js","// Intentionally blank: this domain is retired from public display and indexing.\nexport default {\n  async fetch() {\n    return new Response(null, {\n      status: 410,\n      headers: {\n        \"Content-Type\": \"text/html; charset=utf-8\",\n        \"X-Robots-Tag\": \"noindex, nofollow, noarchive, nosnippet\",\n        \"Cache-Control\": \"no-store\"\n      }\n    });\n  }\n};");
+  continue;
+ }
  for(const page of site.pages)write(page.path?page.path+"/index.html":"index.html",site.kind==="ventures"?renderVentureHtml(site,page):renderHtml(site,page));
  write("sitemap.xml",renderSitemap(site));write("robots.txt",renderRobots(site));write("llms.txt",renderLlms(site));write("llms-full.txt",renderFull(site));write("facts.json",renderFacts(site));
  write("404.html",render404(site));write("favicon.svg",renderFavicon(site));write("style.css",site.kind==="ventures"?ventureStyle:style);
  // Cloudflare Pages redirect for the retired personal domain; retain source HTML for rollback.
- if(domain==="msihu.com")write("_redirects","/* https://min.ventures/ 301");
+
 }
 console.log("Built "+Object.keys(config).join(", ")+" static sites.");
